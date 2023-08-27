@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ENV=development ts-node-dev --files src/index.ts",
-    "start": "ENV=production node dist/src/index.js"
+    "start": "ENV=production node dist/index.js",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
