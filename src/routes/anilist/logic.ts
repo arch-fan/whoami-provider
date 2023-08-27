@@ -17,12 +17,7 @@ query ($name: String) {
 }
 `
 
-interface User {
-  animeCount: number
-  avatar: string
-}
-
-async function getAnilist (): Promise<User> {
+async function getAnilist (): Promise<AnilistUser> {
   const variables = {
     name: ANILIST_USERNAME
   }

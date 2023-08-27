@@ -10,11 +10,26 @@ const client = new OAuth1UserClient({
 
 const readOnlyClient = client.readOnly
 
+const cache: TwitterCache = {}
+
 export async function getTwitter (): Promise<UserV1 | Error> {
   try {
-    const me = readOnlyClient.currentUser()
-    console.log(me)
-    return await me
+    const cacheKey = 'twitterData'
+    const currentTime = Date.now()
+    const cacheDuration = 60 * 60 * 1000 // 1 hour in milliseconds
+
+    if ((cache[cacheKey] != null) && currentTime - cache[cacheKey].timestamp < cacheDuration) {
+      return cache[cacheKey].data
+    }
+
+    const me = await readOnlyClient.currentUser()
+
+    cache[cacheKey] = {
+      data: me,
+      timestamp: currentTime
+    }
+
+    return me
   } catch (e: any) {
     return e
   }
