@@ -26,9 +26,9 @@ netease.get('/', (req, res) => {
 netease.post('/', (req, res) => {
   const authToken = req.header('Authorization')
   if (authToken === NETEASE_AUTH_TOKEN) {
-    const { song, artist, cover }: NeteaseInfo = req.body
+    const { song, artist, cover, id }: NeteaseInfo = req.body
 
-    neteaseInfo = { song, artist, cover }
+    neteaseInfo = { song, artist, cover, id }
     lastUpdated = Date.now()
     res.status(200).json({ Updated: 'Info has been updated' })
   } else {

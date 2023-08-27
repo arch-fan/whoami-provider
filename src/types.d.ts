@@ -31,4 +31,5 @@ interface NeteaseInfo {
   song?: string
   artist?: string
   cover?: string
+  id?: string
 }
