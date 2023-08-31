@@ -16,11 +16,7 @@ const resetInfo = (): void => {
 
 netease.get('/', (req, res) => {
   resetInfo()
-  if (Object.keys(neteaseInfo).length === 0) {
-    res.status(400).json({ Empty: 'No song provided' })
-  } else {
-    res.status(200).json(neteaseInfo)
-  }
+  res.status(200).json(neteaseInfo)
 })
 
 netease.post('/', (req, res) => {
